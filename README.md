@@ -44,6 +44,17 @@ sshd_4 - 22/tcp -> 0.0.0.0:32803
 sshd_5 - 22/tcp -> 0.0.0.0:32804
 ```
 
+`docker ps`
+
+```
+CONTAINER ID        IMAGE               COMMAND               CREATED             STATUS              PORTS                   NAMES
+72e95f32352e        eg_sshd             "/usr/sbin/sshd -D"   17 seconds ago      Up 15 seconds       0.0.0.0:32818->22/tcp   sshd_5
+466fe1b99450        eg_sshd             "/usr/sbin/sshd -D"   19 seconds ago      Up 17 seconds       0.0.0.0:32817->22/tcp   sshd_4
+5a07de62cd8b        eg_sshd             "/usr/sbin/sshd -D"   20 seconds ago      Up 18 seconds       0.0.0.0:32816->22/tcp   sshd_3
+4474b5851ab4        eg_sshd             "/usr/sbin/sshd -D"   22 seconds ago      Up 20 seconds       0.0.0.0:32815->22/tcp   sshd_2
+a0d25077424c        eg_sshd             "/usr/sbin/sshd -D"   24 seconds ago      Up 22 seconds       0.0.0.0:32814->22/tcp   sshd_1
+```
+
 ## SSH into the container
 
 Known host is added to `/dev/null` by the way so it won't spam your `known_hosts` file.
