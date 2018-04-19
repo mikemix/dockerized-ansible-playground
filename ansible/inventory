@@ -1,0 +1,35 @@
+#!/bin/bash -e
+
+echo -n '{"Ansible":{"hosts":['
+delim=''
+
+##
+# print hostnames
+
+docker ps | grep sshd_ | cut -c1-12 | while read line
+do
+    echo -n "$delim"
+    echo -n "\"$line.localhost\""
+    delim=','
+done
+
+echo -n ']}'
+
+##
+# print vars
+
+echo -n ',"_meta":{"hostvars":{'
+delim=''
+
+docker ps | grep sshd_ | cut -c1-12 | while read line
+do
+    port=`docker port $line | cut -d':' -f2-`
+
+    echo -n "$delim"
+    echo -n "\"$line.localhost\":{\"ansible_ssh_port\":\"$port\",\"ansible_ssh_user\":\"root\",\"ansible_connection\":\"ssh\"}"
+
+    delim=','
+done
+
+echo -n '}}}'
+
