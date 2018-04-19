@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+port=`docker port sshd_$1 | cut -d':' -f2-`
+
+if [ -z $port ]; then
+    exit
+fi
+
+ssh -p $port root@localhost -o "UserKnownHostsFile /dev/null" -o StrictHostKeyChecking=no
+
+

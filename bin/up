@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+for i in $(seq 1 $1); do
+    name="sshd_$i"
+    docker run -it --rm -d -p 22 -v $HOME/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro --name $name eg_sshd >/dev/null
+    docker exec $name cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+    docker exec $name chown root:root /root/.ssh/authorized_keys
+    echo -n "$name - "
+    docker port $name
+done
+
+
