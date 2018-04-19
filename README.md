@@ -76,3 +76,14 @@ d1200bbb7e9b
 3ed64b6c7474
 ```
 
+## Dynamic Ansible inventory
+
+Bash script fetches running container list and outputs list in Ansible's JSON format:
+
+Example usage:
+
+`ansible-playbook -i ansible/inventory playbook.yml`
+
+Script output:
+
+> {"Ansible":{"hosts":["78e45d91ae22.localhost","612ed77c432c.localhost","e3bb7c4a0fa9.localhost"]},"_meta":{"hostvars":{"78e45d91ae22.localhost":{"ansible_ssh_port":"32813","ansible_ssh_user":"root","ansible_connection":"ssh"},"612ed77c432c.localhost":{"ansible_ssh_port":"32812","ansible_ssh_user":"root","ansible_connection":"ssh"},"e3bb7c4a0fa9.localhost":{"ansible_ssh_port":"32811","ansible_ssh_user":"root","ansible_connection":"ssh"}}}}
