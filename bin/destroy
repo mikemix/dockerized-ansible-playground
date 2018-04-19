@@ -1,2 +1,2 @@
 #!/bin/bash -e
-docker stop $(docker ps | grep sshd | cut -c1-12)
+docker stop $(docker ps | grep sshd_ | cut -c1-12)
